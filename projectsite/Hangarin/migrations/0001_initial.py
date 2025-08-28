@@ -50,7 +50,7 @@ class Migration(migrations.Migration):
             bases=('Hangarin.basemodel',),
         ),
         migrations.CreateModel(
-            name='Subtask',
+            name='SubTask',
             fields=[
                 ('basemodel_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='Hangarin.basemodel')),
                 ('title', models.CharField(max_length=200)),

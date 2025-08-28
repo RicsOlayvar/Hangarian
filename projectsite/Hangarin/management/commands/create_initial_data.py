@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 from faker import Faker
-from Hangarin.models import Priority, Category, Task, Note, Subtask
+from Hangarin.models import Priority, Category, Task, Note, SubTask
 from django.utils import timezone
 import random  
 
@@ -12,7 +12,7 @@ class Command(BaseCommand):
         self.ensure_defaults()
         self.create_Task(100)
         self.create_Notes(100)
-        self.create_Subtask(100)
+        self.create_SubTask(100)
 
     def ensure_defaults(self):
         if not Category.objects.exists():
@@ -59,12 +59,12 @@ class Command(BaseCommand):
 
         self.stdout.write(self.style.SUCCESS('Notes created successfully.'))
 
-    def create_Subtask(self, count):
+    def create_SubTask(self, count):
         fake = Faker()
         tasks = Task.objects.all()
 
         for _ in range(count):
-            Subtask.objects.create(
+            SubTask.objects.create(
                 parent_task=random.choice(tasks),
                 title=fake.sentence(nb_words=4),
                 status=fake.random_element(elements=["Pending", "In Progress", "Completed"])
