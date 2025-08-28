@@ -7,14 +7,24 @@ class BaseModel(models.Model):
 class Meta:
      abstract = True
 
+
 class Priority(BaseModel):
      name = models.CharField(max_length=150)
+
+     class Meta:
+        verbose_name = "Priority"
+        verbose_name_plural = "Priorities"  
+
 
      def __str__(self):
         return self.name
 
 class Category(BaseModel):
      name = models.CharField(max_length=150)
+
+     class Meta:
+        verbose_name = "Category"
+        verbose_name_plural = "Categories" 
 
      def __str__(self):
         return self.name
@@ -37,7 +47,7 @@ class Note(BaseModel):
      def __str__(self):
         return self.content
 
-class  Subtask (BaseModel):
+class  SubTask (BaseModel):
      parent_task = models.ForeignKey(Task, on_delete=models.CASCADE)
      title = models.CharField(max_length=200)
      status= models.CharField(max_length=50,choices=[("Pending", "Pending"),("In Progress", "In Progress",),("Completed", "Completed"),], default="pending")
