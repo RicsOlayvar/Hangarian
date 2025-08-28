@@ -28,7 +28,7 @@ class Task(BaseModel):
      task_priority = models.ForeignKey(Priority, on_delete=models.CASCADE)
 
      def __str__(self):
-        return self.title
+        return self.Title
 
 class Note(BaseModel):
      related_task = models.ForeignKey(Task, on_delete=models.CASCADE)
