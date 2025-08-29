@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-o8fz-qhk--oa^vohezc^z8rgk&*69t)dakcvbdt_wmyk=n00mb
 DEBUG = True
 
 
-ALLOWED_HOSTS = [] 
+ALLOWED_HOSTS = ['ricsolayvar.pythonanywhere.com'] 
 
 
 # Application definition
