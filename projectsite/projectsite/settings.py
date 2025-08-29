@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-o8fz-qhk--oa^vohezc^z8rgk&*69t)dakcvbdt_wmyk=n00mb
 DEBUG = True
 
 
-ALLOWED_HOSTS = ['RicsOlayvar.pythonanywhere.com', 'localhost','127.0.0.1'] 
+ALLOWED_HOSTS = ['ricsolayvar.pythonanywhere.com', 'localhost','127.0.0.1'] 
 
 
 # Application definition
