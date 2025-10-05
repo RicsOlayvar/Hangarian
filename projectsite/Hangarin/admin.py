@@ -1,5 +1,7 @@
 from django.contrib import admin
 
+
+
 from .models import Priority, Category, Task, Note, SubTask
 
 class SubTaskInline(admin.TabularInline):
@@ -23,6 +25,7 @@ class TaskAdmin(admin.ModelAdmin):
     list_filter = ('status', 'task_priority', 'task_category')
     search_fields = ('Title', 'description')
     inlines = [SubTaskInline, NoteInline]
+   
 
 @admin.register(SubTask)
 class SubTaskAdmin(admin.ModelAdmin):
