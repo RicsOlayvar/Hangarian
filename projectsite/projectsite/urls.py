@@ -16,7 +16,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from Hangarin.views import HomePageView, PriorityListView, CategoryList, TaskList, NoteList, SubTask
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
+    path('', HomePageView.as_view(), name='home'),
+    path('priority_list',PriorityListView.as_view(), name='priority-list' ),
+    path('category_list',CategoryList.as_view(), name='category-list' ),
+    path('task_list',TaskList.as_view(), name='task-list' ),
+    path('note_list',NoteList.as_view(), name='note-list' ),
+    path('subtask_list',SubTask.as_view(), name='subtask-list' ),
+    
+    
+    
 ]
