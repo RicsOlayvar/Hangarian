@@ -73,3 +73,6 @@ class SubTaskCreateView(CreateView):
     form_class = SubTaskForm
     template_name = 'stask_form.html'
     success_url = reverse_lazy('subtask-list')
+
+
+#UPDATE 
