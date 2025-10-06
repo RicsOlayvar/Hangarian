@@ -17,6 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from Hangarin.views import HomePageView, PriorityListView, CategoryList, TaskList, NoteList, SubTaskList
+from Hangarin.views import PriorityCreateView, CategoryCreateView, TaskCreateView, NoteCreateView, SubTaskCreateView
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -25,7 +27,16 @@ urlpatterns = [
     path('category_list',CategoryList.as_view(), name='category-list' ),
     path('task_list',TaskList.as_view(), name='task-list' ),
     path('note_list',NoteList.as_view(), name='note-list' ),
-    path('subtask_list',SubTask.as_view(), name='subtask-list' ),
+    path('subtask_list',SubTaskList.as_view(), name='subtask-list' ),
+    
+    # CreateView
+    path('priority_list/add', PriorityCreateView.as_view(), name='priority-add'),
+    path('category_list/add', CategoryCreateView.as_view(), name='category-add'),
+    path('task_list/add', TaskCreateView.as_view(), name='task-add'),
+    path('note_list/add', NoteCreateView.as_view(), name='note-add'),
+    path('subtask_list/add', SubTaskCreateView.as_view(), name='subtask-add'),
+    
+    
     
     
     
