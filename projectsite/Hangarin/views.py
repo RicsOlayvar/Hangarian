@@ -1,8 +1,8 @@
 from django.shortcuts import render
 
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView
-from Hangarin.forms import OrganizationForm
+from django.views.generic.edit import CreateView , UpdateView
+from Hangarin.forms import PriorityForm, CategoryForm, TaskForm, NoteForm, SubTaskForm
 from django.urls import reverse_lazy
 from Hangarin.models import Priority, Category, Task, Note, SubTask 
 
@@ -76,3 +76,32 @@ class SubTaskCreateView(CreateView):
 
 
 #UPDATE 
+class PriorityUpdateView(UpdateView):
+    model = Priority
+    form_class = PriorityForm
+    template_name = 'prty_form.html'
+    success_url = reverse_lazy('priority-list')
+
+class CategoryUpdateView(UpdateView):
+    model = Category
+    form_class = CategoryForm
+    template_name = 'catgry_form.html'
+    success_url = reverse_lazy('category-list')
+
+class TaskUpdateView(UpdateView):
+    model = Task
+    form_class = TaskForm
+    template_name = 'task_form.html'
+    success_url = reverse_lazy('task-list')
+
+class NoteUpdateView(UpdateView):
+    model = Note
+    form_class = NoteForm
+    template_name = 'note_form.html'
+    success_url = reverse_lazy('note-list')
+
+class SubTaskUpdateView(UpdateView):
+    model = SubTask
+    form_class = SubTaskForm
+    template_name = 'stask_form.html'
+    success_url = reverse_lazy('subtask-list')
