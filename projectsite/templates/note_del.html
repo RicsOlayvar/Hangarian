@@ -8,31 +8,27 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <div class="card-title">
-              {% if object %}Update Task{% else %}Add New Task{% endif %}
-            </div>
-            <div class="card-category">TASKS</div>
+            <div class="card-title">Delete Note</div>
+            
           </div>
 
           <div class="col-md-6">
             <div class="card-body">
-              <form method="post" novalidate>
+              <form class="" action="" method="post" novalidate>
+                <p>Are you sure you want to delete "{{ object }}"?</p>
                 {% csrf_token %}
-                {% if form %}
-                  {{ form.as_p }}
-                {% else %}
-                  {% include 'includes/form.html' %}
-                {% endif %}
+                {% comment %} {% include 'includes/form.html' %} {% endcomment %}
+
                 <div class="form-group">
                   <div class="col-md-12 col-sm-3">
                     <button type="submit" class="btn btn-primary btn-rounded">Submit</button>
-                    <a href="{% url 'task-list' %}" class="btn btn-secondary btn-rounded ml-2">Back</a>
+                    
+                  <a href="{% url 'note-list' %}" class="btn btn-secondary btn-rounded ml-2">Back</a>
                   </div>
                 </div>
               </form>
             </div>
           </div>
-
         </div>
       </div>
     </div>

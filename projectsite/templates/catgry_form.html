@@ -9,25 +9,30 @@
         <div class="card">
           <div class="card-header">
             <div class="card-title">
-              {% if object %}Update Organization{% else %}Add New Organization{% endif %}
+              {% if object %}Update Category{% else %}Add New Category{% endif %}
             </div>
-            <div class="card-category">Page Subtitle</div>
+            <div class="card-category">CATEGORIES</div>
           </div>
 
           <div class="col-md-6">
             <div class="card-body">
-              <form action="" method="post" novalidate>
+              <form method="post" novalidate>
                 {% csrf_token %}
-                {% include 'includes/form.html' %}
-
+                {% if form %}
+                  {{ form.as_p }}
+                {% else %}
+                  {% include 'includes/form.html' %}
+                {% endif %}
                 <div class="form-group">
                   <div class="col-md-12 col-sm-3">
                     <button type="submit" class="btn btn-primary btn-rounded">Submit</button>
+                    <a href="{% url 'category-list' %}" class="btn btn-secondary btn-rounded ml-2">Back</a>
                   </div>
                 </div>
               </form>
             </div>
           </div>
+
         </div>
       </div>
     </div>
