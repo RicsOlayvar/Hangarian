@@ -9,7 +9,7 @@
         <div class="card">
           <div class="card-header">
             <div class="card-title">Delete Priority</div>
-            <div class="card-category">Page Subtitle</div>
+            
           </div>
 
           <div class="col-md-6">
@@ -17,10 +17,13 @@
               <form class="" action="" method="post" novalidate>
                 <p>Are you sure you want to delete "{{ object }}"?</p>
                 {% csrf_token %}
-                {% include 'includes/form.html' %}
+                {% comment %} {% include 'includes/form.html' %} {% endcomment %}
+
                 <div class="form-group">
                   <div class="col-md-12 col-sm-3">
                     <button type="submit" class="btn btn-primary btn-rounded">Submit</button>
+                    
+                  <a href="{% url 'priority-list' %}" class="btn btn-secondary btn-rounded ml-2">Back</a>
                   </div>
                 </div>
               </form>
