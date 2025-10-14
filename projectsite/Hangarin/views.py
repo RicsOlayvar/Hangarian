@@ -81,7 +81,7 @@ class NoteList(ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
         query = self.request.GET.get('q')
-        
+
         if query:
             queryset = queryset.filter(content__icontains=query)
         return queryset
@@ -95,15 +95,12 @@ class SubTaskList(ListView):
 
 
     def get_queryset(self):
-        qs = super().get_queryset()
+        queryset = super().get_queryset()
         query = self.request.GET.get('q')
-
+        
         if query:
-            qs = qs.filter(
-                Q(name__icontains=query) 
-                
-            )
-        return qs
+            queryset = queryset.filter(title__icontains=query)
+        return queryset
 
 
 #CREATEVIEW
