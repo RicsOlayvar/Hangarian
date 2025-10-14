@@ -21,15 +21,15 @@ class PriorityListView(ListView):
     paginate_by = 5 
 
     def get_queryset(self):
-        qs = super().get_queryset()
+        queryset = super().get_queryset()
         query = self.request.GET.get('q')
-
+        
         if query:
-            qs = qs.filter(
-                Q(name__icontains=query) 
-                
+            queryset = queryset.filter(
+                Q(Title__icontains=query) |
+                Q(description__icontains=query)
             )
-        return qs
+            return queryset
 
 
     
