@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView , UpdateView
+from django.views.generic.edit import CreateView , UpdateView, DeleteView
 from Hangarin.forms import PriorityForm, CategoryForm, TaskForm, NoteForm, SubTaskForm
 from django.urls import reverse_lazy
 from Hangarin.models import Priority, Category, Task, Note, SubTask 
@@ -17,6 +17,19 @@ class PriorityListView(ListView):
     context_object_name = 'priority'
     template_name = 'prty_list.html'
     paginate_by = 5 
+
+    def priority_add(request):
+        if request.method == 'POST':
+            form = PriorityForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return ('priority-list')  # Redirect to list view
+        else:
+            form = PriorityForm()
+        return render(request, 'priority_add.html', {'form': form})
+
+    
+
 
 class CategoryList(ListView):
     model = Category
@@ -105,3 +118,30 @@ class SubTaskUpdateView(UpdateView):
     form_class = SubTaskForm
     template_name = 'stask_form.html'
     success_url = reverse_lazy('subtask-list')
+
+#DELETE
+class PriorityDeleteView(DeleteView):
+    model = Priority
+    template_name = 'prty_del.html' 
+    success_url = reverse_lazy('priority-list') 
+
+
+class CategoryDeleteView(DeleteView):
+    model = Category
+    template_name = 'catgry_del.html' 
+    success_url = reverse_lazy('category-list')
+
+class TaskDeleteView(DeleteView):
+    model = Task
+    template_name = 'task_del.html' 
+    success_url = reverse_lazy('task-list')
+
+class NoteDeleteView(DeleteView):
+    model = Note
+    template_name = 'note_del.html' 
+    success_url = reverse_lazy('note-list')
+
+class SubTaskDeleteView(DeleteView):
+    model = SubTask
+    template_name = 'stask_del.html' 
+    success_url = reverse_lazy('stask-list')

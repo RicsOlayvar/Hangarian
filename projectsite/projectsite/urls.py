@@ -18,7 +18,8 @@ from django.contrib import admin
 from django.urls import path
 from Hangarin.views import HomePageView, PriorityListView, CategoryList, TaskList, NoteList, SubTaskList
 from Hangarin.views import PriorityCreateView, CategoryCreateView, TaskCreateView, NoteCreateView, SubTaskCreateView
-
+from Hangarin.views import PriorityUpdateView, CategoryUpdateView, TaskUpdateView, NoteUpdateView, SubTaskUpdateView
+from Hangarin.views import PriorityDeleteView, CategoryDeleteView, TaskDeleteView,NoteDeleteView, SubTaskDeleteView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -35,9 +36,23 @@ urlpatterns = [
     path('task_list/add', TaskCreateView.as_view(), name='task-add'),
     path('note_list/add', NoteCreateView.as_view(), name='note-add'),
     path('subtask_list/add', SubTaskCreateView.as_view(), name='subtask-add'),
-    
-    
-    
-    
-    
+
+    # UPDATE views
+    path('priority_list/edit/<int:pk>/', PriorityUpdateView.as_view(), name='priority-edit'),
+    path('category_list/edit/<int:pk>/', CategoryUpdateView.as_view(), name='category-edit'),
+    path('task_list/edit/<int:pk>/', TaskUpdateView.as_view(), name='task-edit'),
+    path('note_list/edit/<int:pk>/', NoteUpdateView.as_view(), name='note-edit'),
+    path('subtask_list/edit/<int:pk>/', SubTaskUpdateView.as_view(), name='subtask-edit'),
+
+
+    # Delete 
+    path('priority_list/delete/<int:pk>/', PriorityDeleteView.as_view(), name='priority-delete'),
+    path('category_list/delete/<int:pk>/', CategoryDeleteView.as_view(), name='category-delete'),
+    path('task_list/delete/<int:pk>/', TaskDeleteView.as_view(), name='task-delete'),
+    path('note_list/delete/<int:pk>/', NoteDeleteView.as_view(), name='note-delete'),
+    path('subtask_list/delete/<int:pk>/', SubTaskDeleteView.as_view(), name='subtask-delete'),
+
+
+
+     
 ]
