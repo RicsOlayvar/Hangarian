@@ -20,16 +20,13 @@ class PriorityListView(ListView):
     template_name = 'prty_list.html'
     paginate_by = 5 
 
+    
     def get_queryset(self):
-        queryset = super().get_queryset()
         query = self.request.GET.get('q')
         
         if query:
-            queryset = queryset.filter(
-                Q(Title__icontains=query) |
-                Q(description__icontains=query)
-            )
-            return queryset
+            return Priority.objects.filter(name__icontains=query)
+        return Priority.objects.all()
 
 
     
@@ -43,15 +40,12 @@ class CategoryList(ListView):
 
 
     def get_queryset(self):
-        qs = super().get_queryset()
+        queryset = super().get_queryset()
         query = self.request.GET.get('q')
-
+        
         if query:
-            qs = qs.filter(
-                Q(name__icontains=query) 
-                
-            )
-        return qs
+            queryset = queryset.filter(name__icontains=query)
+        return queryset
     
 
 class TaskList(ListView):
