@@ -5,6 +5,8 @@ from django.views.generic.edit import CreateView , UpdateView, DeleteView
 from Hangarin.forms import PriorityForm, CategoryForm, TaskForm, NoteForm, SubTaskForm
 from django.urls import reverse_lazy
 from Hangarin.models import Priority, Category, Task, Note, SubTask 
+from django.db.models import Q
+from django.utils import timezone
 
 class HomePageView(ListView):
     model = Priority
@@ -18,15 +20,17 @@ class PriorityListView(ListView):
     template_name = 'prty_list.html'
     paginate_by = 5 
 
-    def priority_add(request):
-        if request.method == 'POST':
-            form = PriorityForm(request.POST)
-            if form.is_valid():
-                form.save()
-                return ('priority-list')  # Redirect to list view
-        else:
-            form = PriorityForm()
-        return render(request, 'priority_add.html', {'form': form})
+    def get_queryset(self):
+        qs = super().get_queryset()
+        query = self.request.GET.get('q')
+
+        if query:
+            qs = qs.filter(
+                Q(name__icontains=query) 
+                
+            )
+        return qs
+
 
     
 
@@ -37,11 +41,35 @@ class CategoryList(ListView):
     template_name = "catgry_list.html"
     paginate_by = 5
 
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        query = self.request.GET.get('q')
+
+        if query:
+            qs = qs.filter(
+                Q(name__icontains=query) 
+                
+            )
+        return qs
+    
+
 class TaskList(ListView):
     model = Task
     context_object_name = 'task'
     template_name = "task_list.html"
     paginate_by = 5
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        query = self.request.GET.get('q')
+
+        if query:
+            qs = qs.filter(
+                Q(name__icontains=query) 
+                
+            )
+        return qs
 
 class NoteList(ListView):
     model = Note
@@ -49,11 +77,35 @@ class NoteList(ListView):
     template_name = "note_list.html"
     paginate_by = 5
 
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        query = self.request.GET.get('q')
+
+        if query:
+            qs = qs.filter(
+                Q(name__icontains=query) 
+                
+            )
+        return qs
+
 class SubTaskList(ListView):
     model = SubTask
     context_object_name = 'subtask'
     template_name = "stask_list.html"
     paginate_by = 5
+
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        query = self.request.GET.get('q')
+
+        if query:
+            qs = qs.filter(
+                Q(name__icontains=query) 
+                
+            )
+        return qs
 
 
 #CREATEVIEW
