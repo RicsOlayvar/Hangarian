@@ -1,11 +1,66 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+
+<!-- 🌿 Soft Green Theme Styling -->
+<style>
+  body {
+    background-color: #f1f8f4;
+  }
+  .page-title {
+    text-align: center;
+    font-weight: 700;
+    font-size: 2rem;
+    color: #55e75c;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px #c8e6c9;
+  }
+  .card {
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(56, 142, 60, 0.1);
+    border: 1px solid #c8e6c9;
+  }
+  .card-header {
+    background-color: #e8f5e9;
+    border-bottom: 1px solid #a5d6a7;
+  }
+  .card-title {
+    font-weight: 600;
+    color: #22b329;
+  }
+  .btn-rounded {
+    border-radius: 50px;
+    background-color: #66bb6a;
+    color: #fff;
+    border: none;
+  }
+  .btn-rounded:hover {
+    background-color: #388e3c;
+  }
+  .table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f1f8f4;
+  }
+  .input-group input:focus {
+    border-color: #66bb6a;
+    box-shadow: 0 0 0 0.2rem rgba(102, 187, 106, 0.25);
+  }
+  .pagination .page-link {
+    color: #2e7d32;
+  }
+  .pagination .active .page-link {
+    background-color: #2e7d32;
+    border-color: #2e7d32;
+    color: #fff;
+  }
+</style>
+
 <div class="content">
   <div class="container-fluid">
-    <h4 class="page-title">Categories</h4>
-    <div class="row">
-      <div class="col-md-12">
+    <h4 class="page-title">CATEGORIES</h4>
+    <div class="row justify-content-center">
+      <div class="col-md-10">
         <div class="card">
           <div class="card-header">
             <div class="card-title">List of Categories</div>
@@ -26,7 +81,9 @@
               </form>
             </div>
             <div class="col-md-6 text-right">
-              <a href="{% url 'category-add' %}" class="btn btn-success btn-rounded">Add Category</a>
+              <a href="{% url 'category-add' %}" class="btn btn-rounded">
+                <i class="la la-plus-circle"></i> Add Category
+              </a>
             </div>
           </div>
 
@@ -44,14 +101,18 @@
                 <tr>
                   <td>{{ category.name }}</td>
                   <td>
-                    <a href="{% url 'category-edit' category.id %}">Edit</a> |
-                    <a href="{% url 'category-delete' category.id %}" class="text-danger">Delete</a>
+                    <a href="{% url 'category-edit' category.id %}" class="text-primary">
+                      <i class="la la-edit"></i> Edit
+                    </a> |
+                    <a href="{% url 'category-delete' category.id %}" class="text-danger">
+                      <i class="la la-trash"></i> Delete
+                    </a>
                   </td>
                 </tr>
                 {% empty %}
                 <tr>
                   <td colspan="2" class="text-center">
-                    <p class="text-sm font-weight-bold mb-0">No Categories Found</p>
+                    <p class="text-muted">No Categories Found</p>
                   </td>
                 </tr>
                 {% endfor %}
