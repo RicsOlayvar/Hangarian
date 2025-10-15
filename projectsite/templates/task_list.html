@@ -1,11 +1,65 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+
+<!-- ❤️ Soft Red Theme Styling -->
+<style>
+  body {
+    background-color: #fff5f5;
+  }
+  .page-title {
+    text-align: center;
+    font-weight: 700;
+    font-size: 2rem;
+    color: #c62828;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px #ef9a9a;
+  }
+  .card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(198, 40, 40, 0.1);
+    border: 1px solid #ffcdd2;
+  }
+  .card-header {
+    background-color: #ffebee;
+    border-bottom: 1px solid #ef9a9a;
+  }
+  .card-title {
+    font-weight: 600;
+    color: #d32f2f;
+  }
+  .btn-rounded {
+    border-radius: 50px;
+    background-color: #e57373;
+    color: #fff;
+    border: none;
+  }
+  .btn-rounded:hover {
+    background-color: #d32f2f;
+  }
+  .table-striped tbody tr:nth-of-type(odd) {
+    background-color: #fff8f8;
+  }
+  .input-group input:focus {
+    border-color: #e57373;
+    box-shadow: 0 0 0 0.2rem rgba(229, 115, 115, 0.25);
+  }
+  .pagination .page-link {
+    color: #d32f2f;
+  }
+  .pagination .active .page-link {
+    background-color: #d32f2f;
+    border-color: #d32f2f;
+    color: #fff;
+  }
+</style>
+
 <div class="content">
   <div class="container-fluid">
-    <h4 class="page-title">Tasks</h4>
-    <div class="row">
-      <div class="col-md-12">
+    <h3 class="page-title">TASKS</h3>
+    <div class="row justify-content-center">
+      <div class="col-md-10">
         <div class="card">
           <div class="card-header">
             <div class="card-title">List of Tasks</div>
@@ -26,7 +80,9 @@
               </form>
             </div>
             <div class="col-md-6 text-right">
-              <a href="{% url 'task-add' %}" class="btn btn-success btn-rounded">Add Task</a>
+              <a href="{% url 'task-add' %}" class="btn btn-rounded">
+                <i class="la la-plus-circle"></i> Add Task
+              </a>
             </div>
           </div>
 
@@ -52,14 +108,18 @@
                   <td>{{ task.task_category }}</td>
                   <td>{{ task.deadline }}</td>
                   <td>
-                    <a href="{% url 'task-edit' task.id %}">Edit</a> |
-                    <a href="{% url 'task-delete' task.id %}" class="text-danger">Delete</a>
+                    <a href="{% url 'task-edit' task.id %}" class="text-primary">
+                      <i class="la la-edit"></i> Edit
+                    </a> |
+                    <a href="{% url 'task-delete' task.id %}" class="text-danger">
+                      <i class="la la-trash"></i> Delete
+                    </a>
                   </td>
                 </tr>
                 {% empty %}
                 <tr>
                   <td colspan="6" class="text-center">
-                    <p class="text-sm font-weight-bold mb-0">No Tasks Found</p>
+                    <p class="text-muted">No Tasks Found</p>
                   </td>
                 </tr>
                 {% endfor %}
