@@ -2,161 +2,90 @@
 {% load static %}
 {% block content %}
 
-<!-- 🌿💙 Soft Green & Blue Theme Styling -->
 <style>
-  body {
-    background: linear-gradient(to right, #e0f7fa, #e8f5e9);
-  }
-  .page-title {
+.page-title {
     text-align: center;
-    font-weight: 700;
-    font-size: 2rem;
-    color: #2e7d32;
-    margin-bottom: 30px;
-    text-shadow: 1px 1px 2px #b2dfdb;
-  }
-  .card {
-    border-radius: 12px;
-    box-shadow: 0 6px 20px rgba(0, 150, 136, 0.1);
-    border: none;
-  }
-  .card-stats {
-    background-color: #ffffff;
-    transition: transform 0.2s ease;
-  }
-  .card-stats:hover {
-    transform: translateY(-5px);
-  }
-  .card-warning {
-    border-left: 5px solid #81c784;
-  }
-  .card-success {
-    border-left: 5px solid #4db6ac;
-  }
-  .card-danger {
-    border-left: 5px solid #e57373;
-  }
-  .card-primary {
-    border-left: 5px solid #64b5f6;
-  }
-  .card-title {
     font-weight: 600;
-    color: #388e3c;
+    font-size: 1.8rem;
+    color: #15cf91;
+    text-shadow: 1px 1px 2px #1e864a;
   }
-  .card-category {
-    font-size: 0.9rem;
-    color: #607d8b;
-  }
-  .card-body {
-    background-color: #fefefe;
-  }
-  .friend-list {
-    max-height: 120px;
-    overflow-y: auto;
-    margin-top: 10px;
-    padding-left: 15px;
-  }
-  .friend-list li {
-    font-size: 0.9rem;
-    color: #388e3c;
-  }
-</style>
+  </style>
+
+
+
 
 <div class="content">
   <div class="container-fluid">
-    <h4 class="page-title">🌱 HELLO TO HANGARIN WORLD! 💙</h4>
+    <h3 class="page-title text-center font-weight-bold"> HELLO TO HANGARIN WORLD!</h3>
 
-    <!-- Stats Cards Row -->
     <div class="row">
-      <!-- 👥 Friends Card -->
+      <!-- Friends -->
       <div class="col-md-3">
         <div class="card card-stats card-warning">
           <div class="card-body">
             <div class="row">
-              <div class="col-5">
-                <div class="icon-big text-center">
-                  <i class="la la-users"></i>
-                  <small class="text-muted d-block">👥</small>
-                </div>
+              <div class="col-5 text-center">
+                <i class="la la-users"></i>
+                <small class="text-muted d-block">👥</small>
               </div>
-              <div class="col-7 d-flex align-items-center">
-                <div class="numbers">
-                  <p class="card-category">Friends</p>
-                  <h4 class="card-title">{{ friends_count }}</h4>
-                  <ul class="friend-list list-unstyled">
-                    {% for friend in friends %}
-                      <li>👤 {{ friend.name }}</li>
-                    {% empty %}
-                      <li>No friends found</li>
-                    {% endfor %}
-                  </ul>
-                </div>
+              <div class="col-7">
+                <p class="card-category">Friends</p>
+                <h4 class="card-title">77</h4>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 📝 To Do List Card -->
+      <!-- To Do List Today -->
       <div class="col-md-3">
         <div class="card card-stats card-success">
           <div class="card-body">
             <div class="row">
-              <div class="col-5">
-                <div class="icon-big text-center">
-                  <i class="la la-bar-chart"></i>
-                  <bi class="text-muted d-block">📝</bi>
-                </div>
+              <div class="col-5 text-center">
+                <i class="la la-bar-chart"></i>
+                <small class="text-muted d-block">📝</small>
               </div>
-              <div class="col-7 d-flex align-items-center">
-                <div class="numbers">
-                  <p class="card-category">To Do List Today</p>
-                  <h4 class="card-title">5</h4>
-                </div>
+              <div class="col-7">
+                <p class="card-category">To Do List Today</p>
+                <h4 class="card-title">5</h4>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 📬 Subscribers Card -->
+      <!-- Subscribers -->
       <div class="col-md-3">
         <div class="card card-stats card-danger">
           <div class="card-body">
             <div class="row">
-              <div class="col-5">
-                <div class="icon-big text-center">
-                  <i class="la la-newspaper-o"></i>
-                  <small class="text-muted d-block">📬</small>
-                </div>
+              <div class="col-5 text-center">
+                <i class="la la-newspaper-o"></i>
+                <small class="text-muted d-block">📬</small>
               </div>
-              <div class="col-7 d-flex align-items-center">
-                <div class="numbers">
-                  <p class="card-category">Subscribers</p>
-                  <h4 class="card-title">1303</h4>
-                </div>
+              <div class="col-7">
+                <p class="card-category">Subscribers</p>
+                <h4 class="card-title">1303</h4>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- ✅ Accomplished Card -->
+      <!-- Accomplished -->
       <div class="col-md-3">
         <div class="card card-stats card-primary">
           <div class="card-body">
             <div class="row">
-              <div class="col-5">
-                <div class="icon-big text-center">
-                  <i class="la la-check-circle"></i>
-                  <small class="text-muted d-block">✅</small>
-                </div>
+              <div class="col-5 text-center">
+                <i class="la la-check-circle"></i>
+                <small class="text-muted d-block">✅</small>
               </div>
-              <div class="col-7 d-flex align-items-center">
-                <div class="numbers">
-                  <p class="card-category">Accomplished</p>
-                  <h4 class="card-title">576</h4>
-                </div>
+              <div class="col-7">
+                <p class="card-category">Accomplished</p>
+                <h4 class="card-title">576</h4>
               </div>
             </div>
           </div>
@@ -164,21 +93,21 @@
       </div>
     </div>
 
-    <!-- 🌞 Motivation Card -->
+    <!-- Motivation Section -->
     <div class="row mt-4">
       <div class="col-md-12">
-        <div class="card">
+        <div class="card text-center">
           <div class="card-header">
-            <div class="card-title">🌞 Let’s make today productive!</div>
-            <div class="card-category">📌 Track your tasks, notes, subtasks, and more.</div>
+            <h2 class="card-title">🌞 Let’s make today productive!</h2>
+            <p class="card-category">📌 You can now create your tasks, notes, subtasks, and more.</p>
           </div>
-          <div class="card-body text-center">
-            <h5>💪 YOU CAN DO IT NOW! 🚀</h5>
+          <div class="card-body">
+            <h5> YOU CAN DO IT NOW! 🚀</h5>
           </div>
         </div>
       </div>
     </div>
-
   </div>
 </div>
+
 {% endblock %}
