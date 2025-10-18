@@ -93,13 +93,15 @@
               <thead>
                 <tr>
                   <th scope="col">Name</th>
+
                   <th scope="col">Action</th>
                 </tr>
               </thead>
               <tbody>
-                {% for category in category %}
+                {% for category in categories %}
                 <tr>
                   <td>{{ category.name }}</td>
+                  
                   <td>
                     <a href="{% url 'category-edit' category.id %}" class="text-primary">
                       <i class="la la-edit"></i> Edit

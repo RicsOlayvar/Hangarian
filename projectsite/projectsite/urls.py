@@ -20,12 +20,22 @@ from Hangarin.views import HomePageView, PriorityListView, CategoryList, TaskLis
 from Hangarin.views import PriorityCreateView, CategoryCreateView, TaskCreateView, NoteCreateView, SubTaskCreateView
 from Hangarin.views import PriorityUpdateView, CategoryUpdateView, TaskUpdateView, NoteUpdateView, SubTaskUpdateView
 from Hangarin.views import PriorityDeleteView, CategoryDeleteView, TaskDeleteView,NoteDeleteView, SubTaskDeleteView
+from django.conf import settings
+from django.conf.urls.static import static
+
+
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', include('pwa.urls')),
     path("accounts/", include("allauth.urls")), # allauth routes
     path('', HomePageView.as_view(), name='home'),
+    
+    
+
+
+
     path('priority_list',PriorityListView.as_view(), name='priority-list' ),
     path('category_list',CategoryList.as_view(), name='category-list' ),
     path('task_list',TaskList.as_view(), name='task-list' ),

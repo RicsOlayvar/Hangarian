@@ -61,7 +61,7 @@
   <div class="container-fluid">
     <h3 class="page-title">TASKS</h3>
     <div class="row justify-content-center">
-      <div class="col-md-10">
+      <div class="col-md-12">
         <div class="card">
           <div class="card-header">
             <div class="card-title">List of Tasks</div>
@@ -94,21 +94,30 @@
               <thead>
                 <tr>
                   <th scope="col">Title</th>
+                  <th scope="col">Description</th>
                   <th scope="col">Status</th>
                   <th scope="col">Priority</th>
                   <th scope="col">Category</th>
                   <th scope="col">Deadline</th>
+                  <th scope="col">Created At</th>          
+                  <th scope="col">Updated At</th>
+
+
                   <th scope="col">Action</th>
                 </tr>
               </thead>
               <tbody>
-                {% for task in task %}
+                {% for task in tasks %}
                 <tr>
+
                   <td>{{ task.Title }}</td>
+                  <td>{{ task.description }}</td>
                   <td>{{ task.status }}</td>
                   <td>{{ task.task_priority }}</td>
                   <td>{{ task.task_category }}</td>
                   <td>{{ task.deadline }}</td>
+                  <td>{{ task.created_at|date:"M d, Y H:i" }}</td>
+                  <td>{{ task.updated_at|date:"M d, Y H:i" }}</td>
                   <td>
                     <a href="{% url 'task-edit' task.id %}" class="text-primary">
                       <i class="la la-edit"></i> Edit

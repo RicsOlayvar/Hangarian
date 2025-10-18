@@ -73,6 +73,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'projectsite.urls'
+print("BASE_DIR =", BASE_DIR)
 
 TEMPLATES = [
     {
@@ -92,7 +93,7 @@ TEMPLATES = [
 ]
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = (
-    BASE_DIR / 'Static',
+    BASE_DIR / 'static',
 )
 
 
@@ -144,7 +145,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'Static/'
+STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -198,4 +199,4 @@ PWA_APP_ICONS_APPLE = [
 ]
 
 PWA_APP_DIR = 'ltr'
-PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'Static/js', 'serviceworker.js')
+PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static/js', 'serviceworker.js')

@@ -61,7 +61,7 @@
   <div class="container-fluid">
     <h3 class="page-title">SUBTASKS</h3>
     <div class="row justify-content-center">
-      <div class="col-md-10">
+      <div class="col-md-12">
         <div class="card">
           <div class="card-header">
             <div class="card-title">List of SubTasks</div>
@@ -97,14 +97,19 @@
                   <th scope="col">Status</th>
                   <th scope="col">Parent Task</th>
                   <th scope="col">Action</th>
+                  <th scope="col">Created At</th>
+                  <th scope="col">Updated At</th>
                 </tr>
               </thead>
               <tbody>
-                {% for subtask in subtask %}
+                {% for subtask in subtasks %}
                 <tr>
                   <td>{{ subtask.title }}</td>
                   <td>{{ subtask.status }}</td>
                   <td>{{ subtask.parent_task.Title }}</td>
+                  <td>{{ subtask.created_at|date:"M d, Y H:i" }}</td>
+                  <td>{{ subtask.updated_at|date:"M d, Y H:i" }}</td>
+
                   <td>
                     <a href="{% url 'subtask-edit' subtask.id %}" class="text-primary">
                       <i class="la la-edit"></i> Edit

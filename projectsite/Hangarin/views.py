@@ -16,7 +16,7 @@ class HomePageView(ListView):
 #LISTVIEW
 class PriorityListView(ListView):
     model = Priority
-    context_object_name = 'priority'
+    context_object_name = 'priorities'
     template_name = 'prty_list.html'
     paginate_by = 5 
 
@@ -34,11 +34,9 @@ class PriorityListView(ListView):
 
 class CategoryList(ListView):
     model = Category
-    context_object_name = 'category'
+    context_object_name = 'categories'
     template_name = "catgry_list.html"
     paginate_by = 5
-
-    
 
 
     def get_queryset(self):
@@ -52,48 +50,88 @@ class CategoryList(ListView):
 
 class TaskList(ListView):
     model = Task
-    context_object_name = 'task'
+    context_object_name = 'tasks'
     template_name = "task_list.html"
     paginate_by = 5
+    ordering = ["Title"]
+
+    def get_ordering(self):
+        allowed = ["Title", "task_category__name", "task_priority__name", "deadline", "status"]
+        sort_by = self.request.GET.get("sort_by")
+        if sort_by in allowed:
+            return sort_by
+        return "Title"
 
 
     def get_queryset(self):
         qs = super().get_queryset()
         query = self.request.GET.get('q')
-
         if query:
             qs = qs.filter(
-                Q(name__icontains=query) 
-                
+                Q(Title__icontains=query) |
+                Q(task_category__name__icontains=query) |
+                Q(task_priority__name__icontains=query)
             )
         return qs
 
-class NoteList(ListView):
-    model = Note
-    context_object_name = 'note'
-    template_name = "note_list.html"
-    paginate_by = 5
-
 
     
+
+class NoteList(ListView):
+    model = Note
+    context_object_name = 'notes'
+    template_name = "note_list.html"
+    paginate_by = 5
+    ordering = ["created_at"]
+
+    def get_ordering(self):
+        allowed = ["created_at", "updated_at", "related_task__Title"]
+        sort_by = self.request.GET.get("sort_by")
+        if sort_by in allowed:
+            return sort_by
+        return "created_at"
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        query = self.request.GET.get('q')
+        if query:
+            qs = qs.filter(
+            Q(related_task__Title__icontains=query)
+            )
+
+        return qs
+
+
+
     
 
 class SubTaskList(ListView):
     model = SubTask
-    context_object_name = 'subtask'
+    context_object_name = 'subtasks'
     template_name = "stask_list.html"
     paginate_by = 5
+    ordering = ["title", "parent_task__title"]
 
-    
-
+    def get_ordering(self):
+        allowed = ["title", "parent_task__title", "status", "created_at"]
+        sort_by = self.request.GET.get("sort_by")
+        if sort_by in allowed:
+            return sort_by
+        return "title"
 
     def get_queryset(self):
-        queryset = super().get_queryset()
+        qs = super().get_queryset()
         query = self.request.GET.get('q')
         
         if query:
-            queryset = queryset.filter(title__icontains=query)
-        return queryset
+            qs = qs.filter(
+                Q(title__icontains=query) |
+                Q(status__icontains=query)
+            )
+        return qs
+
+
+
 
 
 #CREATEVIEW
@@ -184,4 +222,4 @@ class NoteDeleteView(DeleteView):
 class SubTaskDeleteView(DeleteView):
     model = SubTask
     template_name = 'stask_del.html' 
-    success_url = reverse_lazy('stask-list')
+    success_url = reverse_lazy('subtask-list')
