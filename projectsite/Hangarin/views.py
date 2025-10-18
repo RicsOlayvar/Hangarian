@@ -38,6 +38,8 @@ class CategoryList(ListView):
     template_name = "catgry_list.html"
     paginate_by = 5
 
+    
+
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -53,6 +55,7 @@ class TaskList(ListView):
     context_object_name = 'task'
     template_name = "task_list.html"
     paginate_by = 5
+
 
     def get_queryset(self):
         qs = super().get_queryset()
@@ -72,13 +75,7 @@ class NoteList(ListView):
     paginate_by = 5
 
 
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        query = self.request.GET.get('q')
-
-        if query:
-            queryset = queryset.filter(content__icontains=query)
-        return queryset
+    
     
 
 class SubTaskList(ListView):
@@ -86,6 +83,8 @@ class SubTaskList(ListView):
     context_object_name = 'subtask'
     template_name = "stask_list.html"
     paginate_by = 5
+
+    
 
 
     def get_queryset(self):
